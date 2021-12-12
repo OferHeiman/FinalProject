@@ -8,7 +8,7 @@ import os
 # Flask Object
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'MY SECRET KEY'
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 
 # Database Connection
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost/ProjectQR"
