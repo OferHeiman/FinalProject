@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% if not_qr %}
+<div class="alert alert-dark" role="alert">
+    Please input a QR image
+</div>
+{% endif %}
+{% for message in get_flashed_messages() %}
+{% if message == "Please input URL or Image" %}
+<div class="alert alert-dark" role="alert">
+    {{ message }}
+</div>
+{% endif %}
+{% endfor %}
+<div class="shadow-sm border p-3 mb-5 bg-body rounded">
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {{ form.qr_url.label(class="col-sm-2 col-form-label") }}
+                    {{ form.qr_url(class="form-control") }}
+                </div>
+                <div class="col">
+                    {{ form.qr_image.label(class="col-sm-2 col-form-label") }}
+                    {{ form.qr_image(class="form-control") }}<br>
+                </div>
+            </div>
+        </div>
+        &nbsp&nbsp{{ form.submit(class="btn btn-dark") }}
+    </form>
+</div>
+{% for message in get_flashed_messages() %}
+{% if message == "Please input URL or Image" %}
+{{ pass }}
+{% elif used_url %}
+<div style="width: 30%" class="alert border container">
+    <div class="col" style="text-align: center;word-wrap: break-word;">
+        <div class="row">
+            <img class="container" src="{{ qr_url }}" alt="qr code">
+        </div>
+        URL value:<br>
+        {{ message }}<br><br>
+        URL scanned:<br>
+        <a href="{{ qr_url }}">{{ qr_url }}</a>
+    </div>
+</div>
+{% elif not used_url %}
+<div style="width: 30%" class="alert border container">
+    <div class="col" style="text-align: center;word-wrap: break-word;">
+        <div class="row">
+            <img class="container" src="{{ url_for('static', filename='scannedqr/'+qr_image) }}">
+        </div>
+        URL value:<br>
+        {{ message }}<br>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

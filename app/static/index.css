@@ -1,0 +1,27 @@
+.parent{ /* display listings in flex 6 per row*/
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.child{
+  /* width: 100%; */
+  /* box-sizing: border-box;  */
+  margin: 5px;
+  max-width: 249px;
+}
+
+.textdesc { /* item description only 2 lines */
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 6; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+.textdesc2 { /* item description only 2 lines */
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}

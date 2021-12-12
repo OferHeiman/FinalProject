@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-dark alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div class="container-fluid">
+    <div class="h1" style="text-align: center;word-wrap: break-word;"> What is a QR Code and how does it work?</div>
+    <p style="text-align: center;word-wrap: break-word;">
+        The quick response, or QR, Code is a two-dimensional version of the Barcode able to convey a wide<br>
+        variety of information almost instantly with the scan of a mobile device.<br>
+        <br>
+        Able to store up to 7089 digits or 4296 characters, including punctuation marks and special<br>
+        characters, the Code can equally encode words and phrases such as internet addresses. One thing to<br>
+        always keep in mind, especially when it comes to designing the Static QR Codes aesthetic is that the<br>
+        more data is added, the more the size increases and its structure becomes more complex.<br>
+        <br>
+        Even when damaged, the QR Code’s structure data keys include duplications. It is thanks to these<br>
+        redundancies that allow up to 30% of the Code structure to take damage without affecting its<br>
+        readability on scanners.
+    </p>
+</div>
+
+{% endblock %}

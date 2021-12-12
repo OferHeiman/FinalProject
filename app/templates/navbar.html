@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+
+<nav class="navbar top navbar-expand-lg navbar-light container-fluid" style="background-color:#0040B1">
+  <div class="container-fluid" style="width:30%">
+    <a href="{{url_for('index')}}"><img style="height: 50px" src="{{ url_for('static', filename='favicon.ico') }}"></a>
+    <a class="navbar-brand" style="font-size: 32px;font-weight: bold" href="{{url_for('index')}}">QRLand</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('generate')}}" >Generate</a>
+        </li>
+         {% endif %}
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('scan')}}" >Scan</a>
+        </li>
+         {% endif %}
+        {% if not current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('login')}}" >Login</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('logout')}}" >Logout</a>
+        </li>
+        {% endif %}
+        {% if not current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('signup')}}" >Signup</a>
+        </li>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('profile')}}" >Profile</a>
+        </li>
+      {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</div>
+</nav>
+
+<!--<script>-->
+<!--  // Get the modal-->
+<!--var modal = document.getElementById("myModal");-->
+
+<!--// Get the button that opens the modal-->
+<!--var btn = document.getElementById("myBtn");-->
+
+<!--// Get the <span> element that closes the modal-->
+<!--var span = document.getElementsByClassName("close")[0];-->
+
+<!--// When the user clicks on the button, open the modal-->
+<!--btn.onclick = function() {-->
+<!--  modal.style.display = "block";-->
+<!--}-->
+
+<!--// When the user clicks on <span> (x), close the modal-->
+<!--span.onclick = function() {-->
+<!--  modal.style.display = "none";-->
+<!--}-->
+
+<!--// When the user clicks anywhere outside of the modal, close it-->
+<!--window.onclick = function(event) {-->
+<!--  if (event.target == modal) {-->
+<!--    modal.style.display = "none";-->
+<!--  }-->
+<!--}-->
+<!--</script>-->

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+<div class="container">
+    <div class="row">
+        {% if num_scanned > 0 %}
+        <div class="col-6"><h1>Scanned QR codes:</h1>
+            <div class="col border" style="text-align: center;word-wrap: break-word;width: 60%;margin-bottom:5px">
+                {% for scanned_qr in user_scans %}
+                <div class="row">
+                    <img class="container" src="{{ url_for('static', filename='/scannedqr/'+scanned_qr.qr_image) }}"
+                         alt="qr code">
+                    <b>QR value:</b><br>
+                    <div style="text-align: center;word-wrap: break-word">{{scanned_qr.qr_value}}</div>
+                    <br><br>
+                    {% if scanned_qr.qr_url %}
+                    <b>QR url:</b> <br>
+                    <a href="{{ scanned_qr.qr_url }}" style="text-align: center;word-wrap: break-word">{{scanned_qr.qr_url}}</a><br>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if num_generated > 0 %}
+        <div class="col-6"><h1>Generated QR codes:</h1>
+            <div class="col border" style="text-align: center;word-wrap: break-word;width: 75%;padding: 50px">
+                {% for generated_qr in user_generations %}
+                <div class="row">
+                    <img class="container" src="{{ url_for('static', filename='/generatedqr/'+generated_qr.qr_image) }}"
+                         alt="qr code">
+                    <b>QR value:</b><br>
+                    <div style="text-align: center;word-wrap: break-word">{{generated_qr.qr_text}}</div>
+                    <br><br>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

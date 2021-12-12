@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-dark" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+
+<br>
+<h1>Signup:</h1>
+<div class="shadow-sm border p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.username.label(class="col-sm-2 col-form-label") }}
+        {% if form.username.errors %}
+        {{ form.username(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.username(class="form-control") }}
+        {% endif %}
+
+        {{ form.email.label(class="col-sm-2 col-form-label") }}
+        {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.email(class="form-control") }}
+        {% endif %}
+
+        {{ form.password.label(class="col-sm-2 col-form-label") }}
+        {% if form.password.errors %}
+        {{ form.password(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.password(class="form-control") }}
+        {% endif %}
+
+        {{ form.confirmpassword.label(class="col-sm-2 col-form-label") }}
+        {% if form.confirmpassword.errors %}
+        {{ form.confirmpassword(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.confirmpassword.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.confirmpassword(class="form-control") }}
+        {% endif %}
+        <br>
+        {{ form.submit(class="btn btn-dark") }}
+    </form>
+</div>
+{% endblock %}
